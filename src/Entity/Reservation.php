@@ -2,10 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReservationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
+#[ApiResource(
+    collectionOperations: ['get'],
+    itemOperations: ['get'],
+)]
+
+
 class Reservation
 {
     #[ORM\Id]
@@ -14,9 +24,11 @@ class Reservation
     private $id;
 
     #[ORM\Column(type: 'date')]
+    #[Gedmo\Timestampable(on: 'create')]
     private $datereservation;
 
     #[ORM\Column(type: 'date')]
+    #[Gedmo\Timestampable(on: 'create')]
     private $dateborrowed;
 
     #[ORM\OneToOne(inversedBy: 'reservation', targetEntity: Books::class, cascade: ['persist', 'remove'])]
