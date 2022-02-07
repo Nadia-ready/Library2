@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+{% for user in users %}
+    <article>
+        <h2>{{ user.lastname }}</h2>
+        <a href="{{ path('users_update', {'id': user.id}) }}">Modifier l'utilisateur"</a>
+        <a href="{{ path('users_delete', {'id': user.id}) }}">Supprimer l'utilisateur'"</a>
+    </article>
+{% endfor %}
+
+<div>
+    <a href="{{ path('users_create') }}">Créer un nouvel utilisateur</a>
+</div>
+
+</body>
+</html>
